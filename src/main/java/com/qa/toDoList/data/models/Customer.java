@@ -25,6 +25,10 @@ public class Customer {
 	@NotNull
 	private String email;
 
+	public Customer() {
+		super();
+	}
+	
 	public Customer(String username,  String password,  String email) {
 		super();
 		this.username = username;
