@@ -1,11 +1,14 @@
 package com.qa.toDoList.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,6 +30,18 @@ public class CustomerController {
 	@Autowired
 	public CustomerController(CustomerService customerService) {
 		this.customerService = customerService;
+	}
+	
+	
+	@GetMapping
+	public ResponseEntity<List<CustomerDTO>> getAllCustomers() {
+		
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.add("Location", "1442");
+		
+		List<CustomerDTO> data = customerService.readAllCustomer();
+		
+		return new ResponseEntity<List<CustomerDTO>>(data, httpHeaders, HttpStatus.OK);
 	}
 	
 	@PostMapping

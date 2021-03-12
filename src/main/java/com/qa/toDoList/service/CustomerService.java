@@ -8,7 +8,6 @@ import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.qa.toDoList.data.models.Customer;
 import com.qa.toDoList.data.respository.CustomerRepository;
 import com.qa.toDoList.dto.CustomerDTO;
@@ -26,6 +25,18 @@ public class CustomerService {
 		this.customerRepository = customerRepository;
 		this.customerMapper = customerMapper;
 	}
+	
+	
+	public List<CustomerDTO> readAllCustomer() {
+		List<Customer> cust = customerRepository.findAll();
+		List<CustomerDTO> custDTOs = new ArrayList<CustomerDTO>();
+		
+		cust.forEach(customer -> custDTOs.add(customerMapper.mapToDTO(customer)));
+
+		return custDTOs;
+		
+	}
+	
 	
 	public CustomerDTO createCustomer(Customer customer) {
 		

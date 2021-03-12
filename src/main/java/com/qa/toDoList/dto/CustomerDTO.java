@@ -1,6 +1,6 @@
 package com.qa.toDoList.dto;
 
-public class CustomerDTO {
+public class CustomerDTO  {
 	
 	private int cid;
 	private String username;
