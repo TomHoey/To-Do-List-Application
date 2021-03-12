@@ -44,6 +44,14 @@ public class CustomerController {
 		return new ResponseEntity<List<CustomerDTO>>(data, httpHeaders, HttpStatus.OK);
 	}
 	
+	@GetMapping
+	public ResponseEntity<CustomerDTO> getCustomerbyID(@PathVariable("cid") int cid) {
+		
+		CustomerDTO cust = customerService.readByCID(cid);
+		
+		return new ResponseEntity<CustomerDTO>(cust, HttpStatus.OK);
+	}
+	
 	@PostMapping
 	public ResponseEntity<CustomerDTO> createCustomer(@Valid @RequestBody Customer customer) {
 		
