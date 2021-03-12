@@ -2,6 +2,9 @@ package com.qa.toDoList.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.qa.toDoList.data.models.Customer;
 import com.qa.toDoList.data.respository.CustomerRepository;
 import com.qa.toDoList.dto.CustomerDTO;
+import com.qa.toDoList.exceptions.CustomerNotFoundException;
 import com.qa.toDoList.mappers.CustomerMapper;
 
 @Service
@@ -28,6 +32,25 @@ public class CustomerService {
 		Customer newCust = customerRepository.save(customer);
 		
 		return customerMapper.mapToDTO(newCust);
+	}
+	
+	public CustomerDTO updateCustomer (Integer cid, Customer customer) throws EntityNotFoundException {
+		Optional<Customer> customerInDbOpt = customerRepository.findById(cid);
+		Customer customerInDb;
+		
+		if (customerInDbOpt.isPresent()) {
+			customerInDb = customerInDbOpt.get();
+		} else {
+			throw new CustomerNotFoundException("No customer by that ID exists.");
+		}
+		
+		customerInDb.setUsername(customer.getUsername());
+		customerInDb.setPassword(customer.getPassword());
+		customerInDb.setEmail(customer.getEmail());
+		
+		Customer updatedCust = customerRepository.save(customerInDb);
+		
+		return customerMapper.mapToDTO(updatedCust);
 	}
 
 }

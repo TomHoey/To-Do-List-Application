@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +38,15 @@ public class CustomerController {
 		header.add("Location", String.valueOf(newCust.getCid()));
 		
 		return new ResponseEntity<CustomerDTO>(newCust, header, HttpStatus.CREATED);
+	}
+	
+	@PutMapping("/{cid}")
+	public ResponseEntity<CustomerDTO> updateCustomer(@PathVariable("cid") int cid,
+													  @RequestBody Customer customer) {
+		
+		CustomerDTO updatedCust = customerService.updateCustomer(cid, customer);
+		
+		return new ResponseEntity<CustomerDTO>(updatedCust, HttpStatus.OK);
 	}
 
 }
