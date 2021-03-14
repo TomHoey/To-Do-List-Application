@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,6 +71,11 @@ public class CustomerController {
 		CustomerDTO updatedCust = customerService.updateCustomer(cid, customer);
 		
 		return new ResponseEntity<CustomerDTO>(updatedCust, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{cid}")
+	public ResponseEntity<Boolean> deleteCustomer (@PathVariable("cid") int cid) {
+		return new ResponseEntity<Boolean>(customerService.deleteCustomer(cid), HttpStatus.OK);
 	}
 
 }

@@ -73,5 +73,15 @@ public class CustomerService {
 		
 		return customerMapper.mapToDTO(updatedCust);
 	}
+	
+	public boolean deleteCustomer(Integer cid) {
+		if (!customerRepository.existsById(cid)) {
+			throw new CustomerNotFoundException();
+		}
+		customerRepository.deleteById(cid);
+		
+		boolean custExist = customerRepository.existsById(cid);
+		return !custExist;
+	}
 
 }
