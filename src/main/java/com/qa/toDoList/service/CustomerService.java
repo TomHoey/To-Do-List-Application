@@ -26,17 +26,6 @@ public class CustomerService {
 		this.customerMapper = customerMapper;
 	}
 	
-	public CustomerDTO readByCID(Integer cid) {
-		Optional<Customer> cust = customerRepository.findById(cid);
-		
-		if (cust.isPresent()) {
-			return customerMapper.mapToDTO(cust.get());
-		} else {
-			throw new CustomerNotFoundException ("No user matches that ID");
-		}
-	}
-	
-	
 	public List<CustomerDTO> readAllCustomer() {
 		List<Customer> cust = customerRepository.findAll();
 		List<CustomerDTO> custDTOs = new ArrayList<CustomerDTO>();
@@ -45,6 +34,16 @@ public class CustomerService {
 
 		return custDTOs;
 		
+	}
+	
+	public CustomerDTO readByCID(Integer cid) {
+		Optional<Customer> cust = customerRepository.findById(cid);
+		
+		if (cust.isPresent()) {
+			return customerMapper.mapToDTO(cust.get());
+		} else {
+			throw new CustomerNotFoundException ("No user matches that ID");
+		}
 	}
 	
 	

@@ -38,6 +38,8 @@ public class CustomerControllerUnitTest {
 	
 	private Customer aliveCustomer;
 	private CustomerDTO aliveCustomerDTO;
+
+	private CustomerDTO aliveCustDTO;
 	
 	@BeforeEach
 	public void init() {
@@ -62,9 +64,25 @@ public class CustomerControllerUnitTest {
 		ResponseEntity<List<CustomerDTO>> response =
 				new ResponseEntity<List<CustomerDTO>>(aliveCustomerDTOs, httpHeaders, HttpStatus.OK);
 		
-		assertThat(response).isEqualTo(customerController.readAllCustomers());
+		assertThat(response).isEqualTo(customerController.getAllCustomers());
 		
 		verify(customerService, times(1)).readAllCustomer();
+	}
+	
+	@Test
+	public void createCustomerTest() {
+		
+		when(customerService.createCustomer(Mockito.any(Customer.class))).thenReturn(aliveCustomerDTO);
+		
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.add("Location", String.valueOf(aliveCustomerDTO.getCid()));
+		
+		ResponseEntity<CustomerDTO> response = 
+				new ResponseEntity<CustomerDTO>(aliveCustomerDTO, httpHeaders, HttpStatus.CREATED);
+		
+		assertThat(response).isEqualTo(customerController.createCustomer(aliveCustomer));
+		
+		verify(customerService, times(1)).createCustomer(Mockito.any(Customer.class));
 	}
 
 
