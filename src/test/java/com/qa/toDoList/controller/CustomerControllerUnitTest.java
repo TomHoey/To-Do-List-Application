@@ -113,6 +113,21 @@ public class CustomerControllerUnitTest {
 		
 		verify(customerService, times(1)).updateCustomer(aliveCustomer.getCid(), aliveCustomer);
 	}
+	
+	@Test
+	public void deleteCustomerTest() {
+		
+		when(customerService.deleteCustomer(aliveCustomer.getCid())).thenReturn(true);
+		
+		ResponseEntity<Boolean> response =
+				new ResponseEntity<Boolean>(true, HttpStatus.NO_CONTENT);
+		
+		assertThat(response).isEqualTo(customerController
+				.deleteCustomer(aliveCustomer.getCid()));
+		
+		
+		verify(customerService, times(1)).deleteCustomer(aliveCustomer.getCid());
+	}
 
 
 }

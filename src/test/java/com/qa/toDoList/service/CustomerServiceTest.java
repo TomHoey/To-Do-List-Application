@@ -92,6 +92,7 @@ public class CustomerServiceTest {
 	
 	@Test
 	public void updateCustomerTest() {
+		
 		Customer updateCust = new Customer(1, "Ted", "TedPass", "Ted@Test.com");
 		CustomerDTO updateCustDTO = new CustomerDTO(1, "Ted");
 		
@@ -107,6 +108,17 @@ public class CustomerServiceTest {
 		CustomerDTO testingDTO = customerService.updateCustomer(aliveCust.getCid(), updateCust);
 		
 		assertThat(updateCustDTO).isEqualTo(testingDTO);
+	}
+	
+	@Test
+	public void deleteCustomerTest() {
+		
+		when(customerRepository.existsById(Mockito.any(Integer.class))).thenReturn(true, false);
+		
+		assertThat(true).isEqualTo(customerService.deleteCustomer(aliveCust.getCid()));
+		
+		verify(customerRepository, times(2)).existsById(Mockito.any(Integer.class));
+		
 	}
 
 }

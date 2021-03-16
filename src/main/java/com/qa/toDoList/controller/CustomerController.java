@@ -75,7 +75,7 @@ public class CustomerController {
 	
 	@DeleteMapping("/{cid}")
 	public ResponseEntity<Boolean> deleteCustomer (@PathVariable("cid") int cid) {
-		return new ResponseEntity<Boolean>(customerService.deleteCustomer(cid), HttpStatus.OK);
+		return new ResponseEntity<Boolean>(customerService.deleteCustomer(cid), HttpStatus.NO_CONTENT);
 	}
 
 }
