@@ -86,7 +86,8 @@ public class CustomerControllerUnitTest {
 	@Test
 	public void createCustomerTest() {
 		
-		when(customerService.createCustomer(Mockito.any(Customer.class))).thenReturn(aliveCustomerDTO);
+		when(customerService.createCustomer(Mockito.any(Customer.class)))
+			.thenReturn(aliveCustomerDTO);
 		
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.add("Location", String.valueOf(aliveCustomerDTO.getCid()));
@@ -97,6 +98,20 @@ public class CustomerControllerUnitTest {
 		assertThat(response).isEqualTo(customerController.createCustomer(aliveCustomer));
 		
 		verify(customerService, times(1)).createCustomer(Mockito.any(Customer.class));
+	}
+	
+	@Test
+	public void updateCustomerTest() {
+		when(customerService.updateCustomer(aliveCustomer.getCid(), aliveCustomer))
+				.thenReturn(aliveCustomerDTO);
+		
+		ResponseEntity<CustomerDTO> response = 
+				new ResponseEntity<CustomerDTO>(aliveCustomerDTO, HttpStatus.OK);
+		
+		assertThat(response).isEqualTo(customerController
+				.updateCustomer(aliveCustomer.getCid(), aliveCustomer));
+		
+		verify(customerService, times(1)).updateCustomer(aliveCustomer.getCid(), aliveCustomer);
 	}
 
 

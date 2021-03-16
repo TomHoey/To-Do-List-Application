@@ -89,5 +89,24 @@ public class CustomerServiceTest {
 		verify(customerRepository, times(1)).save(Mockito.any(Customer.class));
 		verify(customerMapper, times(1)).mapToDTO(Mockito.any(Customer.class));
 	}
+	
+	@Test
+	public void updateCustomerTest() {
+		Customer updateCust = new Customer(1, "Ted", "TedPass", "Ted@Test.com");
+		CustomerDTO updateCustDTO = new CustomerDTO(1, "Ted");
+		
+		when(customerRepository.findById(Mockito.any(Integer.class)))
+			.thenReturn(Optional.of(aliveCust));
+		
+		when(customerRepository.save(Mockito.any(Customer.class)))
+			.thenReturn(updateCust);
+		
+		when(customerMapper.mapToDTO(Mockito.any(Customer.class)))
+			.thenReturn(updateCustDTO);
+		
+		CustomerDTO testingDTO = customerService.updateCustomer(aliveCust.getCid(), updateCust);
+		
+		assertThat(updateCustDTO).isEqualTo(testingDTO);
+	}
 
 }
