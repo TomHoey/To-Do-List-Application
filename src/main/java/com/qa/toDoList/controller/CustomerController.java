@@ -46,7 +46,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/{cid}")
-	public ResponseEntity<CustomerDTO> getCustomerbyID(@PathVariable("cid") int cid) {
+	public ResponseEntity<CustomerDTO> getCustomerbyCID(@PathVariable("cid") int cid) {
 		
 		CustomerDTO cust = customerService.readByCID(cid);
 		

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.h2.util.Task;
 import org.junit.jupiter.api.BeforeEach;
@@ -61,6 +62,20 @@ public class CustomerServiceTest {
 		
 		verify(customerRepository, times(1)).findAll();
 		verify(customerMapper, times(1)).mapToDTO(Mockito.any(Customer.class));
+	}
+	
+	@Test
+	public void readByCIDCustomerTest() {
+		
+		when(customerRepository.findById(Mockito.any(Integer.class)))
+			.thenReturn(Optional.of(aliveCust));
+		when(customerMapper.mapToDTO(Mockito.any(Customer.class))).thenReturn(aliveCustDTO);
+		
+		assertThat(aliveCustDTO).isEqualTo(customerService.readByCID(1));
+		
+		verify(customerRepository, times(1)).findById(Mockito.any(Integer.class));
+		verify(customerMapper, times(1)).mapToDTO(Mockito.any(Customer.class));
+		
 	}
 	
 	@Test

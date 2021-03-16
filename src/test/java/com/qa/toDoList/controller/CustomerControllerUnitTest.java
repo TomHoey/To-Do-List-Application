@@ -70,6 +70,20 @@ public class CustomerControllerUnitTest {
 	}
 	
 	@Test
+	public void readByCIDCustomerTest() {
+	
+		
+		when(customerService.readByCID(1)).thenReturn(aliveCustomerDTO);
+		
+		ResponseEntity<CustomerDTO> response =
+				new ResponseEntity<CustomerDTO>(aliveCustomerDTO, HttpStatus.OK);
+		
+		assertThat(response).isEqualTo(customerController.getCustomerbyCID(1));
+		
+		verify(customerService, times(1)).readByCID(Mockito.any(Integer.class));
+	}
+	
+	@Test
 	public void createCustomerTest() {
 		
 		when(customerService.createCustomer(Mockito.any(Customer.class))).thenReturn(aliveCustomerDTO);
