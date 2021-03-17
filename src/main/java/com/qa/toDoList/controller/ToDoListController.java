@@ -2,13 +2,19 @@ package com.qa.toDoList.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qa.toDoList.data.models.ToDoList;
 import com.qa.toDoList.dto.ToDoListDTO;
 import com.qa.toDoList.service.ToDoListService;
 
@@ -28,6 +34,16 @@ public class ToDoListController {
 		List<ToDoListDTO> data = tdlService.readAllLists();
 		
 		return new ResponseEntity<List<ToDoListDTO>>(data, HttpStatus.OK);
+	}
+	
+	@PostMapping
+	public ResponseEntity<ToDoListDTO> createList(@Valid @RequestBody ToDoList toDoList) {
+		ToDoListDTO newList = tdlService.createList(toDoList);
+		
+		HttpHeaders header = new HttpHeaders();
+		header.add("Location", String.valueOf(newList.getToDoID()));
+		
+		return new ResponseEntity<ToDoListDTO>(newList, header, HttpStatus.CREATED);
 	}
 
 }

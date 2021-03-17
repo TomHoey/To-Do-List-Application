@@ -37,6 +37,12 @@ public class ToDoListService {
 		return returned;
 	}
 	
+	public ToDoListDTO createList (ToDoList toDoList) {
+		ToDoList newList = tdlRepo.save(toDoList);
+		
+		return tdlMapper.mapToDTO(newList);
+	}
+	
 	
 
 }
