@@ -15,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -104,6 +105,22 @@ public class TaskController {
 		HttpHeaders header = new HttpHeaders();
 		header.add("Location", model.getRequiredLink(IanaLinkRelations.SELF).toUri().toString());
 		return new ResponseEntity<EntityModel<TaskDTO>>(model, header, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteTask (@PathVariable("id") Integer id) {
+		TaskDTO task = taskService.readByID(id);
+		
+		if (!task.getStatus().equals(Status.COMPLETED)) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED)
+					.header(HttpHeaders.CONTENT_TYPE, MediaTypes.HTTP_PROBLEM_DETAILS_JSON_VALUE)
+					.body(Problem.create()
+							.withTitle("Method not Allowed")
+							.withDetail("You can't delete a task with the status " 
+							+ task.getStatus() + " status"));
+		}
+		
+		return new ResponseEntity<Boolean>(taskService.deleteTask(id), HttpStatus.NO_CONTENT);
 	}
 
 }

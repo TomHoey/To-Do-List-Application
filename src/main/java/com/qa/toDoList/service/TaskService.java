@@ -68,5 +68,17 @@ public class TaskService {
 		Tasks updatedTask = taskRepository.save(taskInDB);
 		return taskMapper.mapToDTO(updatedTask);
 	}
+	
+	public boolean deleteTask(Integer id) {
+		if (!taskRepository.existsById(id)) {
+			throw new EntityNotFoundException();
+		}
+		
+		taskRepository.deleteById(id);
+		boolean youThere = taskRepository.existsById(id);
+		
+		return !youThere;
+		
+	}
 
 }
