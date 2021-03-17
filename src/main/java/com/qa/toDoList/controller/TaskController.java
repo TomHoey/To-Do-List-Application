@@ -3,6 +3,8 @@ package com.qa.toDoList.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -12,11 +14,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import com.qa.toDoList.data.models.Tasks;
 import com.qa.toDoList.dto.TaskDTO;
 import com.qa.toDoList.service.TaskService;
 
@@ -63,6 +68,17 @@ public class TaskController {
 				linkTo(methodOn(TaskController.class).getAllTasks()).withRel("tasks"));
 		
 		return new ResponseEntity<EntityModel<TaskDTO>>(taskEntityModel, HttpStatus.OK);
+	}
+	
+	@PostMapping
+	public ResponseEntity<?> createTask(@Valid @RequestBody Tasks task) {
+		TaskDTO newTask = taskService.createTask(task);
+		
+		EntityModel<TaskDTO> taskmodel = taskDTOModelAssembler.toModel(newTask);
+		
+		ResponseEntity<?> response = ResponseEntity.created(
+				taskmodel.getRequiredLink(IanaLinkRelations.SELF).toUri()).body(taskmodel);
+		return response;
 	}
 
 }

@@ -45,5 +45,11 @@ public class TaskService {
 			throw new EntityNotFoundException();
 		}
 	}
+	
+	public TaskDTO createTask (Tasks task) {
+		Tasks newTask = taskRepository.save(task);
+		
+		return taskMapper.mapToDTO(newTask);
+	}
 
 }
