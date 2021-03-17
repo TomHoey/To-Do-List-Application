@@ -60,6 +60,16 @@ public class ToDoListService {
 		return tdlMapper.mapToDTO(tdlRepo.save(listInDB));
 	}
 	
+	public Boolean deleteList (Integer toDoID) {
+		if (tdlRepo.existsById(toDoID)) {
+			tdlRepo.deleteById(toDoID);
+		} else {
+			throw new EntityNotFoundException();
+		}
+		boolean existence = tdlRepo.existsById(toDoID);	
+		return !existence;
+	}
+	
 	
 
 }
