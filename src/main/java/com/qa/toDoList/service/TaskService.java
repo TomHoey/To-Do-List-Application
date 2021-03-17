@@ -51,5 +51,22 @@ public class TaskService {
 		
 		return taskMapper.mapToDTO(newTask);
 	}
+	
+	public TaskDTO updateTask (Integer id, Tasks task) throws EntityNotFoundException {
+		Optional<Tasks> taskinDBOpt = taskRepository.findById(id);
+		Tasks taskInDB;
+		
+		if (taskinDBOpt.isPresent()) {
+			taskInDB = taskinDBOpt.get();
+		} else {
+			throw new EntityNotFoundException();
+		}
+		
+		taskInDB.setName(task.getName());
+		taskInDB.setDescription(task.getDescription());
+		
+		Tasks updatedTask = taskRepository.save(taskInDB);
+		return taskMapper.mapToDTO(updatedTask);
+	}
 
 }

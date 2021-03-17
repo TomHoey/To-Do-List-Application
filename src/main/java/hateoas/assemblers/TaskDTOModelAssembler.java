@@ -27,14 +27,14 @@ public class TaskDTOModelAssembler implements RepresentationModelAssembler<TaskD
 	@Override
 	public EntityModel<TaskDTO> toModel(TaskDTO entity) {
 		EntityModel<TaskDTO> entityModel = EntityModel.of(entity,
-				linkTo(methodOn(TaskController.class).getTaskById(entity.getId())).withSelfRel().withTitle("GET"),
+				linkTo(methodOn(TaskController.class).getTaskByID(entity.getId())).withSelfRel().withTitle("GET"),
 				linkTo(methodOn(TaskController.class).getAllTasks()).withRel("tasks").withTitle("GET"));
 
 		if (entity.getStatus().equals(Status.COMPLETED)) {
 			entityModel.add(
-					linkTo(methodOn(TaskController.class).deleteTask(entity.getID())).withRel("delete")
+					linkTo(methodOn(TaskController.class).deleteTask(entity.getId())).withRel("delete")
 							.withTitle("DELETE"),
-					linkTo(methodOn(TaskController.class).updateTask(entity.getID(), taskMapper.mapToTasks(entity)))
+					linkTo(methodOn(TaskController.class).updateTask(entity.getId(), taskMapper.mapToTasks(entity)))
 							.withRel("Update").withTitle("PUT"));
 		}
 
