@@ -62,7 +62,7 @@ public class CustomerControllerUnitTest {
 		ResponseEntity<List<CustomerDTO>> response =
 				new ResponseEntity<List<CustomerDTO>>(aliveCustomerDTOs, httpHeaders, HttpStatus.OK);
 		
-		assertThat(response).isEqualTo(customerController.readAllCustomers());
+		assertThat(response).isEqualTo(customerController.getAllCustomers());
 		
 		verify(customerService, times(1)).readAllCustomer();
 	}
