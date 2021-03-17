@@ -2,7 +2,9 @@ package com.qa.toDoList.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,21 @@ public class ToDoListService {
 		ToDoList newList = tdlRepo.save(toDoList);
 		
 		return tdlMapper.mapToDTO(newList);
+	}
+	
+	public ToDoListDTO updateList (Integer toDoID, ToDoList toDoList) {
+		if (!tdlRepo.existsById(toDoID)) {
+			throw new EntityNotFoundException();
+		}
+		
+		Optional<ToDoList> listOpt = tdlRepo.findById(toDoID);
+		ToDoList listInDB = listOpt.orElseThrow(() -> {
+			throw new EntityNotFoundException();
+		});
+		
+		listInDB.setToDoListName(toDoList.getToDoListName());
+		
+		return tdlMapper.mapToDTO(tdlRepo.save(listInDB));
 	}
 	
 	
