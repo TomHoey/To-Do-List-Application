@@ -85,11 +85,13 @@ public class ToDoList {
 		this.toDoListName = toDoListName;
 	}
 
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + toDoID;
+		result = prime * result + ((tasks == null) ? 0 : tasks.hashCode());
 		result = prime * result + ((toDoListName == null) ? 0 : toDoListName.hashCode());
 		return result;
 	}
@@ -103,16 +105,19 @@ public class ToDoList {
 		if (getClass() != obj.getClass())
 			return false;
 		ToDoList other = (ToDoList) obj;
-		if (toDoID != other.toDoID)
-			return false;
-		if (toDoListName == null) {
-			if (other.toDoListName != null)
+		if (getTasks() == null) {
+			if (other.getTasks() != null)
 				return false;
-		} else if (!toDoListName.equals(other.toDoListName))
+		} else if (!getTasks().equals(other.getTasks()))
+			return false;
+		if (getToDoListName() == null) {
+			if (other.getToDoListName() != null)
+				return false;
+		} else if (!getToDoListName().equals(other.getToDoListName()))
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		

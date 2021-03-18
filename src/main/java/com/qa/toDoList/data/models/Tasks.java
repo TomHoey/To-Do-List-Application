@@ -84,7 +84,6 @@ public class Tasks {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((toDoList == null) ? 0 : toDoList.hashCode());
 		return result;
@@ -99,22 +98,20 @@ public class Tasks {
 		if (getClass() != obj.getClass())
 			return false;
 		Tasks other = (Tasks) obj;
-		if (description == null) {
-			if (other.description != null)
+		if (getDescription() == null) {
+			if (other.getDescription() != null)
 				return false;
-		} else if (!description.equals(other.description))
+		} else if (!getDescription().equals(other.getDescription()))
 			return false;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (getName() == null) {
+			if (other.getName() != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!getName().equals(other.getName()))
 			return false;
-		if (toDoList == null) {
-			if (other.toDoList != null)
+		if (getToDoList() == null) {
+			if (other.getToDoList() != null)
 				return false;
-		} else if (!toDoList.equals(other.toDoList))
+		} else if (!getToDoList().equals(other.getToDoList()))
 			return false;
 		return true;
 	}

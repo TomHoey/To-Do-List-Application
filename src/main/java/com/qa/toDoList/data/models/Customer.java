@@ -95,20 +95,20 @@ public class Customer {
 		if (getClass() != obj.getClass())
 			return false;
 		Customer other = (Customer) obj;
-		if (email == null) {
-			if (other.email != null)
+		if (getEmail() == null) {
+			if (other.getEmail() != null)
 				return false;
-		} else if (!email.equals(other.email))
+		} else if (!getEmail().equals(other.getEmail()))
 			return false;
-		if (password == null) {
-			if (other.password != null)
+		if (getPassword() == null) {
+			if (other.getPassword() != null)
 				return false;
-		} else if (!password.equals(other.password))
+		} else if (!getPassword().equals(other.getPassword()))
 			return false;
-		if (username == null) {
-			if (other.username != null)
+		if (getUsername() == null) {
+			if (other.getUsername() != null)
 				return false;
-		} else if (!username.equals(other.username))
+		} else if (!getUsername().equals(other.getUsername()))
 			return false;
 		return true;
 	}

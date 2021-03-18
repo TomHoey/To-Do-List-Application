@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import com.qa.toDoList.data.models.Tasks;
 import com.qa.toDoList.dto.TaskDTO;
 import com.qa.toDoList.dto.ToDoListDTO;
 

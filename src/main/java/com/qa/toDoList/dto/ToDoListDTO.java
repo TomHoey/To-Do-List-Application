@@ -79,17 +79,17 @@ public class ToDoListDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		ToDoListDTO other = (ToDoListDTO) obj;
-		if (listName == null) {
-			if (other.listName != null)
+		if (getListName() == null) {
+			if (other.getListName() != null)
 				return false;
-		} else if (!listName.equals(other.listName))
+		} else if (!getListName().equals(other.getListName()))
 			return false;
-		if (tasks == null) {
-			if (other.tasks != null)
+		if (getTasks() == null) {
+			if (other.getTasks() != null)
 				return false;
-		} else if (!tasks.equals(other.tasks))
+		} else if (!getTasks().equals(other.getTasks()))
 			return false;
-		if (toDoID != other.toDoID)
+		if (getToDoID() != other.getToDoID())
 			return false;
 		return true;
 	}

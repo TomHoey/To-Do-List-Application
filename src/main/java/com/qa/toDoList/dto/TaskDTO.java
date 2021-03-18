@@ -88,7 +88,7 @@ public class TaskDTO {
 
 	@Override
 	public String toString () { 
-		return "TaskDTO [ID: " + id + ", Name: " + taskName + "Description: " + description + "]";
+		return "TaskDTO [ID: " + id + ", Name: " + taskName + ", Description: " + description + "]";
 	}
 
 }

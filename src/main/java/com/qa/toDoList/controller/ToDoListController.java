@@ -54,16 +54,13 @@ public class ToDoListController {
 			@RequestBody ToDoList toDoList) {
 		ToDoListDTO updateList = tdlService.updateList(toDoID, toDoList);
 		
-		HttpHeaders header = new HttpHeaders();
-		header.add("Location", String.valueOf(updateList.getToDoID()));
-		
-		return new ResponseEntity<ToDoListDTO>(updateList, header, HttpStatus.OK);
+		return new ResponseEntity<ToDoListDTO>(updateList, HttpStatus.OK);
 		
 	}
 	
 	@DeleteMapping("/toDoID")
 	public ResponseEntity<Boolean> deleteList(@PathVariable("toDoID") int toDoID) {
-		return new ResponseEntity<Boolean>(tdlService.deleteList(toDoID), HttpStatus.OK);
+		return new ResponseEntity<Boolean>(tdlService.deleteList(toDoID), HttpStatus.NO_CONTENT);
 	}
 
 }
