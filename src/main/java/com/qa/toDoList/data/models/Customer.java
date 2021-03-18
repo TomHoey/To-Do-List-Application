@@ -80,7 +80,6 @@ public class Customer {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + cid;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -96,8 +95,6 @@ public class Customer {
 		if (getClass() != obj.getClass())
 			return false;
 		Customer other = (Customer) obj;
-		if (cid != other.cid)
-			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
