@@ -1,5 +1,6 @@
 package com.qa.toDoList.data.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -27,23 +28,37 @@ public class ToDoList {
 	@Column(name = "name", unique = true)
 	private String toDoListName;
 	
-	@OneToMany(mappedBy = "ToDoList", fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToMany(mappedBy = "toDoList", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Tasks> tasks;
 	
-	public ToDoList() {
-		super();
+	public ToDoList(int temporary) {
+		toDoID = temporary;
+		this.tasks = new ArrayList<Tasks>();
 	}
 	
-	public ToDoList(String toDoListName) {
-		super();
-		this.toDoListName = toDoListName;
+	public ToDoList() {
+		this.tasks = new ArrayList<Tasks>();
 	}
 	
 	public ToDoList(int toDoID, String toDoListName) {
 		super();
 		this.toDoID = toDoID;
 		this.toDoListName = toDoListName;
+		this.tasks = new ArrayList<Tasks>();
+	}
+	
+	public ToDoList(String toDoListName, List<Tasks> tasks) {
+		super();
+		this.toDoListName = toDoListName;
+		this.tasks = tasks;
+	}
+	
+	public ToDoList(int toDoID, String toDoListName, List<Tasks> tasks) {
+		super();
+		this.toDoID = toDoID;
+		this.toDoListName = toDoListName;
+		this.tasks = tasks;
 	}
 
 	public int getToDoID() {

@@ -27,23 +27,12 @@ public class TaskService {
 		this.taskMapper = taskMapper;
 	}
 	
-	public List<TaskDTO> readAllTasks() {
-		List<Tasks> tasks = taskRepository.findAll();
-		List<TaskDTO> taskDTO = new ArrayList<TaskDTO>();
+	public List<TaskDTO> readByID (Integer ID) {
+		List<Tasks> tasker = taskRepository.findForToDoList(ID);
+		List<TaskDTO> taskDTOs = new ArrayList<TaskDTO>();
 		
-		tasks.forEach(task -> taskDTO.add(taskMapper.mapToDTO(task)));
-		
-		return taskDTO;
-	}
-	
-	public TaskDTO readByID (Integer ID) {
-		Optional<Tasks> task = taskRepository.findById(ID);
-		
-		if (task.isPresent()) {
-			return taskMapper.mapToDTO(task.get());
-		} else {
-			throw new EntityNotFoundException();
-		}
+		tasker.forEach(task -> taskDTOs.add(taskMapper.mapToDTO(task)));
+		return taskDTOs;
 	}
 	
 	public TaskDTO createTask (Tasks task) {

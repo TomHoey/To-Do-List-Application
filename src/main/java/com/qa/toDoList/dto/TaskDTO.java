@@ -1,7 +1,5 @@
 package com.qa.toDoList.dto;
 
-import com.qa.toDoList.data.models.Status;
-
 public class TaskDTO {
 	
 	private int id;
@@ -10,7 +8,6 @@ public class TaskDTO {
 	
 	private String description;
 	
-	private Status status;
 	
 	public TaskDTO() {
 		super();
@@ -21,25 +18,14 @@ public class TaskDTO {
 		this.id = id;
 		this.taskName = taskName;
 		this.description = description;
+		
 	}
 	
-	public TaskDTO(int id, String taskName, String description, Status status) {
+	public TaskDTO(String taskName, String description) {
 		super();
-		this.id = id;
 		this.taskName = taskName;
 		this.description = description;
-		this.status = status;
-	}
-	
-	public String getIdentification() {
-		return id + " " + taskName + " " + description;
-	}
-	
-	public void setIdentification(String in) {
-		String [] parts = in.split(" ");
-		this.id = Integer.parseInt(parts[0]);
-		this.taskName = parts[1];
-		this.description = parts[2];
+		
 	}
 
 	public int getId() {
@@ -65,22 +51,13 @@ public class TaskDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((taskName == null) ? 0 : taskName.hashCode());
 		return result;
 	}
@@ -101,8 +78,6 @@ public class TaskDTO {
 			return false;
 		if (id != other.id)
 			return false;
-		if (status != other.status)
-			return false;
 		if (taskName == null) {
 			if (other.taskName != null)
 				return false;
@@ -110,7 +85,7 @@ public class TaskDTO {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString () { 
 		return "TaskDTO [ID: " + id + ", Name: " + taskName + "Description: " + description + "]";

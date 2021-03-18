@@ -22,7 +22,7 @@ import com.qa.toDoList.dto.ToDoListDTO;
 import com.qa.toDoList.service.ToDoListService;
 
 @RestController
-@RequestMapping("/list")
+@RequestMapping(path = "/list")
 public class ToDoListController {
 	
 	private ToDoListService tdlService;
@@ -34,7 +34,7 @@ public class ToDoListController {
 	
 	@GetMapping
 	public ResponseEntity<List<ToDoListDTO>> getAllLists() {
-		List<ToDoListDTO> data = tdlService.readAllLists();
+		List<ToDoListDTO> data = tdlService.listAllLists();
 		
 		return new ResponseEntity<List<ToDoListDTO>>(data, HttpStatus.OK);
 	}

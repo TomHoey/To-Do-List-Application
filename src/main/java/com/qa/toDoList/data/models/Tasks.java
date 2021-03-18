@@ -17,21 +17,17 @@ public class Tasks {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "taskID")
+	@Column(name = "TaskID")
 	private int id;
 	
 	@Column(name = "name", unique = true)
 	@NotNull
 	private String name;
 	
-	@Column(name = "description")
-	@NotNull
 	private String description;
 	
-	private Status status;
-	
 	@ManyToOne(targetEntity = ToDoList.class, fetch = FetchType.EAGER)
-	@JoinColumn(name = "fk_toDoID")
+	@JoinColumn(name = "fk_taskID")
 	private ToDoList toDoList;
 	
 	public Tasks() {
@@ -49,15 +45,6 @@ public class Tasks {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-	}
-	
-	public Tasks(int id, String name, String description, Status status) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.status = status;
-		this.toDoList = toDoList;
 	}
 
 	public int getId() {
@@ -84,14 +71,6 @@ public class Tasks {
 		this.description = description;
 	}
 
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
 	public ToDoList getToDoList() {
 		return toDoList;
 	}
@@ -107,7 +86,6 @@ public class Tasks {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((toDoList == null) ? 0 : toDoList.hashCode());
 		return result;
 	}
@@ -133,8 +111,6 @@ public class Tasks {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (status != other.status)
-			return false;
 		if (toDoList == null) {
 			if (other.toDoList != null)
 				return false;
@@ -145,8 +121,7 @@ public class Tasks {
 	
 	@Override
 	public String toString() {
-		return "Task [ID: " + id + ", Name: " + name + ", Description: " + description +
-				"Status: " + status + "To-Do-List: " + toDoList + "]";
+		return "Task [ID: " + id + ", Name: " + name + ", Description: " + description + "]";
 	}
 
 }

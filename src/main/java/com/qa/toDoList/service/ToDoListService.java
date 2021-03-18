@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,15 +27,11 @@ public class ToDoListService {
 		this.tdlMapper = tdlMapper;
 	}
 	
-	@Transactional
-	public List<ToDoListDTO> readAllLists() {
-		List<ToDoList> listInDB = tdlRepo.findAll();
-		List<ToDoListDTO> returned = new ArrayList<ToDoListDTO>();
-		listInDB.forEach(list -> {
-			returned.add(tdlMapper.mapToDTO(list));
-		});
-		
-		return returned;
+	public List<ToDoListDTO> listAllLists() {
+		List<ToDoList> toDo = tdlRepo.findAll();
+		List<ToDoListDTO> toDoDTO = new ArrayList<ToDoListDTO>();
+		toDo.forEach(toDoList -> toDoDTO.add(tdlMapper.mapToDTO(toDoList)));
+		return toDoDTO;
 	}
 	
 	public ToDoListDTO createList (ToDoList toDoList) {
@@ -51,12 +46,14 @@ public class ToDoListService {
 		}
 		
 		Optional<ToDoList> listOpt = tdlRepo.findById(toDoID);
-		ToDoList listInDB = listOpt.orElseThrow(() -> {
+		ToDoList listInDB;
+		if (listOpt.isPresent()) {
+			listInDB = listOpt.get();
+		} else {
 			throw new EntityNotFoundException();
-		});
+		}
 		
-		listInDB.setToDoListName(toDoList.getToDoListName());
-		
+		listInDB.setToDoListName(listInDB.getToDoListName());
 		return tdlMapper.mapToDTO(tdlRepo.save(listInDB));
 	}
 	
