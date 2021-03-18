@@ -41,10 +41,7 @@ public class ToDoListService {
 	}
 	
 	public ToDoListDTO updateList (Integer toDoID, ToDoList toDoList) {
-		if (!tdlRepo.existsById(toDoID)) {
-			throw new EntityNotFoundException();
-		}
-		
+	
 		Optional<ToDoList> listOpt = tdlRepo.findById(toDoID);
 		ToDoList listInDB;
 		if (listOpt.isPresent()) {

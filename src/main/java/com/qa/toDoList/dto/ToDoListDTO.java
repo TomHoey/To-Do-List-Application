@@ -1,6 +1,9 @@
 package com.qa.toDoList.dto;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.qa.toDoList.data.models.Tasks;
 
 public class ToDoListDTO {
 	
@@ -16,7 +19,14 @@ public class ToDoListDTO {
 	}
 	
 	public ToDoListDTO() {
-		
+	
+	}
+	
+	public ToDoListDTO(int toDoID, String toDoListName) {
+		super();
+		this.toDoID = toDoID;
+		this.listName = listName;
+		this.tasks = new ArrayList<TaskDTO>();
 	}
 	
 	public ToDoListDTO(int toDoID, String listName, List<TaskDTO> tasks) {
