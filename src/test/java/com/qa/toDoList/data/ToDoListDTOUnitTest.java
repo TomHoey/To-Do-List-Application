@@ -9,7 +9,7 @@ import com.qa.toDoList.dto.ToDoListDTO;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-public class ToDoListDTOTest {
+public class ToDoListDTOUnitTest {
 	
 	@Test
 	public void testEquals() {

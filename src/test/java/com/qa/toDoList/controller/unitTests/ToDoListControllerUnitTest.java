@@ -1,4 +1,4 @@
-package com.qa.toDoList.controller;
+package com.qa.toDoList.controller.unitTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.times;
@@ -18,6 +18,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.qa.toDoList.controller.ToDoListController;
 import com.qa.toDoList.data.models.ToDoList;
 import com.qa.toDoList.dto.ToDoListDTO;
 import com.qa.toDoList.mappers.ToDoListMapper;

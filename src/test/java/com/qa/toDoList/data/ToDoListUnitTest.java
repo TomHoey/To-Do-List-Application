@@ -6,7 +6,7 @@ import com.qa.toDoList.data.models.ToDoList;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-public class ToDoListTest {
+public class ToDoListUnitTest {
 	
 	
 	@Test

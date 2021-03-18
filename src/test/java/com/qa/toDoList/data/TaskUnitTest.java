@@ -9,7 +9,7 @@ import com.qa.toDoList.data.models.ToDoList;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-public class TaskTest {
+public class TaskUnitTest {
 	ToDoList newList = new ToDoList(1, "Exercise", new ArrayList<Tasks>());
 	
 	@Test

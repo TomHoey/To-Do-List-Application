@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.qa.toDoList.data.respository.CustomerRepository;
 
 @DataJpaTest
-public class CustomerRepositoryTest {
+public class CustomerRepositoryUnitTest {
 	
 	@Autowired
 	private DataSource dataSource;

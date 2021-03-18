@@ -15,6 +15,11 @@ public class CustomerDTO  {
 		this.cid = cid;
 		this.username = username;
 	}
+	
+	public CustomerDTO(String username) {
+		super();
+		this.username = username;
+	}
 
 	public int getCid() {
 		return cid;

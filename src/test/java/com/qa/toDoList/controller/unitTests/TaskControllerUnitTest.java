@@ -1,4 +1,4 @@
-package com.qa.toDoList.controller;
+package com.qa.toDoList.controller.unitTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.times;
@@ -18,13 +18,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.qa.toDoList.controller.TaskController;
 import com.qa.toDoList.data.models.Tasks;
 import com.qa.toDoList.dto.TaskDTO;
 import com.qa.toDoList.mappers.TaskMapper;
 import com.qa.toDoList.service.TaskService;
 
 @SpringBootTest
-public class TaskControllerTest {
+public class TaskControllerUnitTest {
 	
 	
 	@Autowired

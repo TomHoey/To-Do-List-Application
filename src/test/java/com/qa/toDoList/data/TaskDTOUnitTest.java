@@ -6,7 +6,7 @@ import com.qa.toDoList.dto.TaskDTO;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-public class TaskDTOTest {
+public class TaskDTOUnitTest {
 	
 	@Test
 	public void testEquals() {

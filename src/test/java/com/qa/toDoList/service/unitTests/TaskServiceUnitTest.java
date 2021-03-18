@@ -1,4 +1,4 @@
-package com.qa.toDoList.service;
+package com.qa.toDoList.service.unitTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.times;
@@ -20,9 +20,10 @@ import com.qa.toDoList.data.models.Tasks;
 import com.qa.toDoList.data.respository.TaskRepository;
 import com.qa.toDoList.dto.TaskDTO;
 import com.qa.toDoList.mappers.TaskMapper;
+import com.qa.toDoList.service.TaskService;
 
 @SpringBootTest
-public class TaskServiceTest {
+public class TaskServiceUnitTest {
 	
 	@Autowired
 	private TaskService taskService;

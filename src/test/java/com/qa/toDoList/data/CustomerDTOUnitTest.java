@@ -6,7 +6,7 @@ import com.qa.toDoList.dto.CustomerDTO;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-public class CustomerDTOTest {
+public class CustomerDTOUnitTest {
 	
 	@Test
 	public void testEquals() {
