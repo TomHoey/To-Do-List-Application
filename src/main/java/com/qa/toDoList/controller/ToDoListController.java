@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.qa.toDoList.data.models.ToDoList;
 import com.qa.toDoList.dto.ToDoListDTO;
 import com.qa.toDoList.service.ToDoListService;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/list")
 public class ToDoListController {
@@ -49,8 +51,8 @@ public class ToDoListController {
 		return new ResponseEntity<ToDoListDTO>(newList, header, HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/toDoID")
-	public ResponseEntity<ToDoListDTO> updateList(@PathVariable("toDoID") Integer toDoID, 
+	@PutMapping("/{toDoID}")
+	public ResponseEntity<ToDoListDTO> updateList(@PathVariable("toDoID") int toDoID, 
 			@RequestBody ToDoList toDoList) {
 		ToDoListDTO updateList = tdlService.updateList(toDoID, toDoList);
 		
@@ -58,7 +60,7 @@ public class ToDoListController {
 		
 	}
 	
-	@DeleteMapping("/toDoID")
+	@DeleteMapping("/{toDoID}")
 	public ResponseEntity<Boolean> deleteList(@PathVariable("toDoID") int toDoID) {
 		return new ResponseEntity<Boolean>(tdlService.deleteList(toDoID), HttpStatus.NO_CONTENT);
 	}

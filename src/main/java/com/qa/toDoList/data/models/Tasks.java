@@ -20,14 +20,14 @@ public class Tasks {
 	@Column(name = "TaskID")
 	private int id;
 	
-	@Column(name = "name", unique = true)
+	@Column(name = "name")
 	@NotNull
 	private String name;
 	
 	private String description;
 	
 	@ManyToOne(targetEntity = ToDoList.class, fetch = FetchType.EAGER)
-	@JoinColumn(name = "fk_taskID")
+	@JoinColumn(name = "fk_todoiddentification")
 	private ToDoList toDoList;
 	
 	public Tasks() {

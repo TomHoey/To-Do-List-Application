@@ -3,8 +3,6 @@ package com.qa.toDoList.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.qa.toDoList.data.models.Tasks;
-
 public class ToDoListDTO {
 	
 	private int toDoID;
@@ -22,7 +20,7 @@ public class ToDoListDTO {
 	
 	}
 	
-	public ToDoListDTO(int toDoID, String toDoListName) {
+	public ToDoListDTO(int toDoID, String listName) {
 		super();
 		this.toDoID = toDoID;
 		this.listName = listName;

@@ -80,7 +80,7 @@ public class TaskServiceUnitTest {
 	public void updateTaskTest() { 
 		Tasks newTask = new Tasks(1, "NewOnTheBlock", "End the Suffering");
 		TaskDTO newTaskDTO = new TaskDTO(1, "NewOnTheBlock", "End the Suffering");
-		
+		 
 		when(taskRepo.findById(Mockito.any(Integer.class))).thenReturn(Optional.of(validTask));
 		when(taskRepo.save(Mockito.any(Tasks.class))).thenReturn(newTask);
 		when(taskMapper.mapToDTO(Mockito.any(Tasks.class))).thenReturn(newTaskDTO);

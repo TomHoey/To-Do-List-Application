@@ -22,11 +22,11 @@ public class ToDoList {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "toDoID")
+	@Column(name = "to_DoID")
 	private int toDoID;
 	
 	@Column(name = "name", unique = true)
-	private String toDoListName;
+	private String listName;
 	
 	@OneToMany(mappedBy = "toDoList", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -41,23 +41,23 @@ public class ToDoList {
 		this.tasks = new ArrayList<Tasks>();
 	}
 	
-	public ToDoList(int toDoID, String toDoListName) {
+	public ToDoList(int toDoID, String listName) {
 		super();
 		this.toDoID = toDoID;
-		this.toDoListName = toDoListName;
+		this.listName = listName;
 		this.tasks = new ArrayList<Tasks>();
 	}
 	
-	public ToDoList(String toDoListName, List<Tasks> tasks) {
+	public ToDoList(String listName, List<Tasks> tasks) {
 		super();
-		this.toDoListName = toDoListName;
+		this.listName = listName;
 		this.tasks = tasks;
 	}
 	
-	public ToDoList(int toDoID, String toDoListName, List<Tasks> tasks) {
+	public ToDoList(int toDoID, String listName, List<Tasks> tasks) {
 		super();
 		this.toDoID = toDoID;
-		this.toDoListName = toDoListName;
+		this.listName = listName;
 		this.tasks = tasks;
 	}
 
@@ -69,8 +69,8 @@ public class ToDoList {
 		this.toDoID = toDoID;
 	}
 
-	public String getToDoListName() {
-		return toDoListName;
+	public String getListName() {
+		return listName;
 	}
 	
 	public List<Tasks> getTasks() {
@@ -81,8 +81,8 @@ public class ToDoList {
 		this.tasks = tasks;
 	}
 
-	public void setToDoListName(String toDoListName) {
-		this.toDoListName = toDoListName;
+	public void setListName(String listName) {
+		this.listName = listName;
 	}
 
 	
@@ -92,7 +92,7 @@ public class ToDoList {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((tasks == null) ? 0 : tasks.hashCode());
-		result = prime * result + ((toDoListName == null) ? 0 : toDoListName.hashCode());
+		result = prime * result + ((listName == null) ? 0 : listName.hashCode());
 		return result;
 	}
 
@@ -110,10 +110,10 @@ public class ToDoList {
 				return false;
 		} else if (!getTasks().equals(other.getTasks()))
 			return false;
-		if (getToDoListName() == null) {
-			if (other.getToDoListName() != null)
+		if (getListName() == null) {
+			if (other.getListName() != null)
 				return false;
-		} else if (!getToDoListName().equals(other.getToDoListName()))
+		} else if (!getListName().equals(other.getListName()))
 			return false;
 		return true;
 	}
@@ -121,7 +121,7 @@ public class ToDoList {
 	@Override
 	public String toString() {
 		
-		return "List [ListID:" + toDoID + ", name:" + toDoListName + "]";
+		return "List [ListID:" + toDoID + ", name:" + listName + "]";
 	}
 
 	

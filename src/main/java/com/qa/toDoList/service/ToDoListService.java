@@ -40,18 +40,21 @@ public class ToDoListService {
 		return tdlMapper.mapToDTO(newList);
 	}
 	
-	public ToDoListDTO updateList (Integer toDoID, ToDoList toDoList) {
+	public ToDoListDTO updateList (int toDoID, ToDoList toDoList) {
 	
 		Optional<ToDoList> listOpt = tdlRepo.findById(toDoID);
 		ToDoList listInDB;
+		
 		if (listOpt.isPresent()) {
 			listInDB = listOpt.get();
 		} else {
 			throw new EntityNotFoundException();
 		}
 		
-		listInDB.setToDoListName(listInDB.getToDoListName());
-		return tdlMapper.mapToDTO(tdlRepo.save(listInDB));
+		listInDB.setListName(toDoList.getListName());
+		
+		tdlRepo.save(listInDB);
+		return tdlMapper.mapToDTO(listInDB);
 	}
 	
 	public Boolean deleteList (Integer toDoID) {

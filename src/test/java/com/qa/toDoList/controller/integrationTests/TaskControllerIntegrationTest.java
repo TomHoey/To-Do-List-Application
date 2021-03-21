@@ -52,7 +52,7 @@ public class TaskControllerIntegrationTest {
 	private ObjectMapper objectMapper;
 	
 	private Tasks validTask = new Tasks(1, "Running", "Run 5km");
-	private TaskDTO validTaskDTO = new TaskDTO(1, "Running", "Run 5Km");
+	private TaskDTO validTaskDTO = new TaskDTO(1, "Running", "Run 5km");
 
 	private List<Tasks> validTasks = List.of(validTask);
 	private List<TaskDTO> validTaskDTOs = List.of(validTaskDTO);
@@ -61,7 +61,7 @@ public class TaskControllerIntegrationTest {
 
 	@Test
 	public void createTaskTest() throws Exception {
-		Tasks taskSave = new Tasks("Running", "Run 5km");
+		Tasks taskSave = new Tasks("Sprinting", "100m");
 		taskSave.setToDoList(validList);
 		
 		TaskDTO requiredTask = new TaskDTO(2, "Sprinting", "100m");
@@ -92,7 +92,7 @@ public class TaskControllerIntegrationTest {
 		
 		ResultMatcher statusMatcher = MockMvcResultMatchers.status().isOk();
 		ResultMatcher contentMatcher = MockMvcResultMatchers.content()
-				.json(objectMapper.writeValueAsString(validTaskDTO));
+				.json(objectMapper.writeValueAsString(validTaskDTOs));
 		
 		mvc.perform(mockRequest)
 		   .andExpect(statusMatcher)

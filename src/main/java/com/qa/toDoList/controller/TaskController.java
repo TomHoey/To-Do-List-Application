@@ -21,9 +21,9 @@ import com.qa.toDoList.data.models.ToDoList;
 import com.qa.toDoList.dto.TaskDTO;
 import com.qa.toDoList.service.TaskService;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path="/task")
-@CrossOrigin
 public class TaskController {
 	
 	private TaskService taskService;
@@ -34,35 +34,45 @@ public class TaskController {
 		
 	}
 	
+	
 	@GetMapping("/{id}")
-	public ResponseEntity<List<TaskDTO>> getTasksByID(@PathVariable("id)") int id) {
+	public ResponseEntity<List<TaskDTO>> getTasksByID(@PathVariable("id") int id) {
 		List<TaskDTO> task = taskService.readByID(id);
 		return new ResponseEntity<List<TaskDTO>>(task, HttpStatus.OK);
 
 	}
 	
+	@CrossOrigin
 	@PostMapping("/{id}")
-	public ResponseEntity<TaskDTO> createTask(@PathVariable("id)") Integer id, @RequestBody Tasks task) {
+	public ResponseEntity<TaskDTO> createTask(@PathVariable("id") int id, @RequestBody Tasks task) {
 		ToDoList newList = new ToDoList();
 		newList.setToDoID(id);
 		task.setToDoList(newList);
+		
+		System.out.println(task.getId());
+		
 		TaskDTO newTask = taskService.createTask(task);
+		
+		System.out.println(newTask.getId());
 		
 		HttpHeaders header = new HttpHeaders();
 		header.add("Location", String.valueOf(newTask.getId()));
+		
 		return new ResponseEntity<TaskDTO>(newTask, header, HttpStatus.CREATED);
 		
 	}
 	
+	@CrossOrigin
 	@PutMapping("/{id}")
-	public ResponseEntity<TaskDTO> updateTask(@PathVariable("id") Integer id, @RequestBody Tasks task) {
+	public ResponseEntity<TaskDTO> updateTask(@PathVariable("id") int id, @RequestBody Tasks task) {
 		TaskDTO newTask = taskService.updateTask(id, task);
 		
 		return new ResponseEntity<TaskDTO>(newTask, HttpStatus.OK);
 	}
 	
+	@CrossOrigin
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Boolean> deleteTask (@PathVariable("id") Integer id) {
+	public ResponseEntity<Boolean> deleteTask (@PathVariable("id") int id) {
 		return new ResponseEntity<Boolean>(taskService.deleteTask(id), HttpStatus.NO_CONTENT);
 	}
 

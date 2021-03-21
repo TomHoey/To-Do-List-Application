@@ -4,7 +4,7 @@ public class TaskDTO {
 	
 	private int id;
 	
-	private String taskName;
+	private String name;
 	
 	private String description;
 	
@@ -13,17 +13,17 @@ public class TaskDTO {
 		super();
 	}
 	
-	public TaskDTO(int id, String taskName, String description) {
+	public TaskDTO(int id, String name, String description) {
 		super();
 		this.id = id;
-		this.taskName = taskName;
+		this.name = name;
 		this.description = description;
 		
 	}
 	
-	public TaskDTO(String taskName, String description) {
+	public TaskDTO(String name, String description) {
 		super();
-		this.taskName = taskName;
+		this.name = name;
 		this.description = description;
 		
 	}
@@ -36,12 +36,12 @@ public class TaskDTO {
 		this.id = id;
 	}
 
-	public String getTaskName() {
-		return taskName;
+	public String getname() {
+		return name;
 	}
 
-	public void setTaskName(String taskName) {
-		this.taskName = taskName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
@@ -58,7 +58,7 @@ public class TaskDTO {
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((taskName == null) ? 0 : taskName.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -78,17 +78,17 @@ public class TaskDTO {
 			return false;
 		if (id != other.id)
 			return false;
-		if (taskName == null) {
-			if (other.taskName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!taskName.equals(other.taskName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString () { 
-		return "TaskDTO [ID: " + id + ", Name: " + taskName + ", Description: " + description + "]";
+		return "TaskDTO [ID: " + id + ", Name: " + name + ", Description: " + description + "]";
 	}
 
 }

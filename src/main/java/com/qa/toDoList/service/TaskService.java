@@ -58,6 +58,7 @@ public class TaskService {
 		return taskMapper.mapToDTO(updatedTask);
 	}
 	
+	
 	public boolean deleteTask(Integer id) {
 		if (!taskRepository.existsById(id)) {
 			throw new EntityNotFoundException();
