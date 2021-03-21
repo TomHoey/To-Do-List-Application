@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" 
+          rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="/CSS/Styling.css" />
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark"
+     style="background-color: slategrey">
+    
+    <div class="container-fluid">
+      <a class="navbar-brand" href="Home-Page.html">QA To-Do-List</a>
+
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item">
+            <a class="nav-link" href="Home-Page.html">Home-Page</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="Lists.html">Create a List</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="Tasks.html">Create a Task</a>
+          </li>
+  
+        </ul>
+  
+        <ul class="navbar-nav d-flex flex-row me-1">
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link" href="Login-Page.html"> Login</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="Register-Page.html"> Register </a>
+          </li>
+        </ul>
+  
+      </div>
+    </div>
+  </nav>
+
+  <br>
+
+  <div>
+    <h2 id="ListHeader">
+        On this page you can manage your Tasks
+    </h2>
+</div>
+
+<div>
+    <h5 id="ListHeaderDescription">
+        This page allows you to create, update, and delete your Tasks!
+        <br>
+        Remember, you can only add a task to a current, available List. So make sure you have the ID of the List available!
+    </h5>
+</div>
+
+<br>
+
+<!-- Creating a new Task -->
+
+<div class="CRUDcard">
+    <div class="card-body">
+        <div class="POST">
+           
+            <h3 class="CRUDcardheader">
+                <b>Create a New Task</b>
+            </h3>
+           
+            <p>
+                Remember to check your existing List IDs, so we can properly insert your task!
+            </p>
+        </div>
+
+    <div class="mb-3">
+            
+            <label for="listID" class="form-label">
+                ID of the List
+            </label>
+            
+            <input type="number" class="form-control" name="listIDInput" id="listIDInput"
+            />
+
+    </div>
+
+    <div class="mb-3">
+            
+            <label for="taskName" class="form-label">
+                Task Name
+            </label>
+        
+            <input type="text" class="form-control" name="taskNameInput" id="taskNameInput"
+            />
+    
+    </div>
+
+    <div class="mb-3">
+            
+        <label for="taskDescription" class="form-label">
+            Task Description
+        </label>
+    
+        <input type="text" class="form-control" name="taskDescriptionInput" id="taskDescriptionInput"
+        />
+
+    </div>  
+
+            <button type="submit" class="Submission-Button" id="createList" onclick="postTask()">
+                        Create the Task
+            </button>
+          
+    </div>
+  </div>
+
+<!-- End of creating new Task-->
+
+  <br>
+
+<!-- Updating a current Task-->
+
+  <div class="CRUDcard">
+    <div class="card-body">
+        <div class="PUT">
+           
+            <h3 class="CRUDcardheader">
+                <b>Update an Existing List</b>
+            </h3>
+           
+            <p>
+                Be sure to remember the ID of the list you're trying to change!
+            </p>
+        </div>
+
+    <div class="mb-3">
+            
+            <label for="updateTaskID" class="form-label">
+                What was the ID of the Task you would like to change?
+            </label>
+            
+            <input type="text" class="form-control" name="updateTaskIDInput" id="updateTaskIDInput"
+            />
+
+    </div>
+
+    <div class="mb-3">
+            
+        <label for="taskName" class="form-label">
+            What name would you like for your updated List?
+        </label>
+        
+        <input type="text" class="form-control" name="updateTaskNameInput" id="updateTaskNameInput"
+        />
+
+    </div>
+
+    <div class="mb-3">
+            
+        <label for="taskDescription" class="form-label">
+            Enter a New Description
+        </label>
+        
+        <input type="text" class="form-control" name="updateTaskDescriptionInput" id="updateTaskDescriptionInput"
+        />
+
+    </div>
+
+            <button type="button" class="Submission-Button" id="updateList" onclick="putTask()">
+                        Update a List
+            </button>
+          
+    </div>
+  </div>
+
+<!-- End of updating a Task-->
+
+<br>
+
+<!-- Delete a Task -->
+
+<div class="CRUDcard">
+    <div class="card-body">
+        <div class="DELETE">
+           
+            <h3 class="CRUDcardheader">
+                <b>Delete a Task</b>
+            </h3>
+           
+            <p>
+                Sad to see the Task go? We are at Tom does coding poorly! Make a new one soon!
+            </p>
+        </div>
+
+    <div class="mb-3" id="deleteTaskFunction">
+            
+            <label for="deleteTaskID" class="form-label" id="deleteTaskID">
+                Enter below the ID of the Task you would like to delete.
+            </label>
+            
+            <input type="number" class="form-control" name="deleteTaskByIDInput" id="deleteTaskByIDInput"
+            />
+
+     </div>
+
+            <button type="button" class="Submission-Button" onclick="deleteTask()">
+                        Delete a Task
+            </button>
+          
+    </div>
+  </div>
+
+<!-- End of Deleting a Task-->
+
+
+
+<script src="/JS/Tasks.js">
+</script>
+
+<script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous">
+</script>
+
+</body>
+
+<footer>
+
+
+</footer>
+
+</html>
