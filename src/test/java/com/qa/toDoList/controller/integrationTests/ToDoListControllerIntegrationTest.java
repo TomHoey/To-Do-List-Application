@@ -63,7 +63,7 @@ public class ToDoListControllerIntegrationTest {
 	private List<ToDoListDTO> validListDTOs = List.of(validListDTO);
 
 	@Test
-	public void createListTest() throws Exception {
+	void createListTest() throws Exception {
 		
 		ToDoList newList = new ToDoList(2, "Exercise");
 		ToDoListDTO newListDTO = new ToDoListDTO(2, "Exercise");
@@ -89,7 +89,7 @@ public class ToDoListControllerIntegrationTest {
 	
 	
 	@Test
-	public void readAllLists() throws Exception {
+	void readAllLists() throws Exception {
 		
 		MockHttpServletRequestBuilder mockRequest = 
 				MockMvcRequestBuilders.request(HttpMethod.GET, "/list");
@@ -105,7 +105,7 @@ public class ToDoListControllerIntegrationTest {
 	}
 	
 	@Test
-	 void updateListTest() throws Exception {
+	void updateListTest() throws Exception {
 		
 		 ToDoList newList = new ToDoList(1, "Exercise");
 		 ToDoListDTO newListDTO = new ToDoListDTO(1, "Exercise"); 
@@ -129,7 +129,7 @@ public class ToDoListControllerIntegrationTest {
 	}
 	
 	@Test
-	public void deleteLists() throws Exception {
+	void deleteLists() throws Exception {
 		MockHttpServletRequestBuilder mockRequest = 
 				MockMvcRequestBuilders.request(HttpMethod.DELETE, "/list/1");
 		

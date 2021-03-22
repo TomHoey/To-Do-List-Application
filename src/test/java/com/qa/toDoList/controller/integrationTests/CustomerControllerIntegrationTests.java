@@ -39,7 +39,7 @@ public class CustomerControllerIntegrationTests {
 	private CustomerDTO aliveCustDTO;
 	
 	@BeforeEach
-	public void init() {
+	void init() {
 		
 		aliveCust = new Customer("Inter", "InterPass", "Inter@test.com");
 		aliveCustDTO = new CustomerDTO("Inter");
@@ -52,7 +52,7 @@ public class CustomerControllerIntegrationTests {
 	}
 	
 	@Test
-	public void getAllCustomersIntTest() {
+	void getAllCustomersIntTest() {
 		
 		when(custService.readAllCustomer()).thenReturn(aliveCustDTOs);
 		
@@ -68,7 +68,7 @@ public class CustomerControllerIntegrationTests {
 	}
 	
 	@Test
-	public void createCustomerIntTest() {
+	void createCustomerIntTest() {
 		
 		when(custService.createCustomer(Mockito.any(Customer.class))).thenReturn(aliveCustDTO);
 		
@@ -84,7 +84,7 @@ public class CustomerControllerIntegrationTests {
 	}
 	
 	@Test
-	public void updateCustomerIntTest() {
+	void updateCustomerIntTest() {
 		when(custService.updateCustomer(Mockito.any(Integer.class),
 				Mockito.any(Customer.class))).thenReturn(aliveCustDTO);
 		
@@ -98,7 +98,7 @@ public class CustomerControllerIntegrationTests {
 	}
 	
 	@Test
-	public void deleteCustomerIntTest() {
+	void deleteCustomerIntTest() {
 		when(custService.deleteCustomer(Mockito.any(Integer.class))).thenReturn(true);
 		
 		ResponseEntity<Boolean> response =

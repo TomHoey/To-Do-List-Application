@@ -12,12 +12,12 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 public class ToDoListDTOUnitTest {
 	
 	@Test
-	public void testEquals() {
+	void testEquals() {
 		EqualsVerifier.simple().forClass(ToDoListDTO.class).verify();
 	}
 	
 	@Test
-	public void ConstructorTest() {
+	void ConstructorTest() {
 		ToDoListDTO newDTOTest = new ToDoListDTO(0, null, new ArrayList<TaskDTO>());
 		newDTOTest.toString();
 	}

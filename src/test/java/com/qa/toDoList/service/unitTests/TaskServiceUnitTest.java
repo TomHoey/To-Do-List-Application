@@ -41,7 +41,7 @@ public class TaskServiceUnitTest {
 	private TaskDTO validTaskDTO;
 	
 	@BeforeEach
-	public void init() { 
+	void init() { 
 		validTask = new Tasks(1, "Tasky", "TaskDescription");
 		validTaskDTO = new TaskDTO(1, "Tasky", "TaskDescription");
 		
@@ -53,7 +53,7 @@ public class TaskServiceUnitTest {
 	} 
 	
 	@Test
-	public void readTaskByIDTest() { 
+	void readTaskByIDTest() { 
 		
 		when(taskRepo.findForToDoList(1)).thenReturn(validTasks);
 		when(taskMapper.mapToDTO(Mockito.any(Tasks.class))).thenReturn(validTaskDTO);
@@ -65,7 +65,7 @@ public class TaskServiceUnitTest {
 	}
 	
 	@Test
-	public void createTaskTest() { 
+	void createTaskTest() { 
 		
 		when(taskRepo.save(Mockito.any(Tasks.class))).thenReturn(validTask);
 		when(taskMapper.mapToDTO(Mockito.any(Tasks.class))).thenReturn(validTaskDTO);
@@ -77,7 +77,7 @@ public class TaskServiceUnitTest {
 	}
 	
 	@Test
-	public void updateTaskTest() { 
+	void updateTaskTest() { 
 		Tasks newTask = new Tasks(1, "NewOnTheBlock", "End the Suffering");
 		TaskDTO newTaskDTO = new TaskDTO(1, "NewOnTheBlock", "End the Suffering");
 		 
@@ -95,7 +95,7 @@ public class TaskServiceUnitTest {
 	}
 	
 	@Test
-	public void deleteTaskTest() {
+	void deleteTaskTest() {
 		
 		when(taskRepo.existsById(Mockito.any(Integer.class)))
 			.thenReturn(true, false);

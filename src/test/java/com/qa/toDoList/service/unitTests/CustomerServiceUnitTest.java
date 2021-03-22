@@ -42,7 +42,7 @@ public class CustomerServiceUnitTest {
 	private CustomerDTO aliveCustDTO;
 	
 	@BeforeEach
-	public void init() {
+	void init() {
 		aliveCust = new Customer(1, "Jeff", "JeffPass", "Jeff@Test.com");
 		aliveCustDTO = new CustomerDTO(1, "Jeff");
 		
@@ -54,7 +54,7 @@ public class CustomerServiceUnitTest {
 	}
 	
 	@Test
-	public void readAllCustomerTest() {
+	void readAllCustomerTest() {
 		
 		when(customerRepository.findAll()).thenReturn(custs);
 		when(customerMapper.mapToDTO(Mockito.any(Customer.class))).thenReturn(aliveCustDTO);
@@ -66,7 +66,7 @@ public class CustomerServiceUnitTest {
 	}
 	
 	@Test
-	public void readByCIDCustomerTest() {
+	void readByCIDCustomerTest() {
 		
 		when(customerRepository.findById(Mockito.any(Integer.class)))
 			.thenReturn(Optional.of(aliveCust));
@@ -80,7 +80,7 @@ public class CustomerServiceUnitTest {
 	}
 	
 	@Test
-	public void createCustomerTest() {
+	void createCustomerTest() {
 		
 		when(customerRepository.save(Mockito.any(Customer.class))).thenReturn(aliveCust);
 		when(customerMapper.mapToDTO(Mockito.any(Customer.class))).thenReturn(aliveCustDTO);
@@ -92,7 +92,7 @@ public class CustomerServiceUnitTest {
 	}
 	
 	@Test
-	public void updateCustomerTest() {
+	void updateCustomerTest() {
 		
 		Customer updateCust = new Customer(1, "Ted", "TedPass", "Ted@Test.com");
 		CustomerDTO updateCustDTO = new CustomerDTO(1, "Ted");
@@ -112,7 +112,7 @@ public class CustomerServiceUnitTest {
 	}
 	
 	@Test
-	public void deleteCustomerTest() {
+	void deleteCustomerTest() {
 		
 		when(customerRepository.existsById(Mockito.any(Integer.class))).thenReturn(true, false);
 		

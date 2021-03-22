@@ -41,7 +41,7 @@ class TaskServiceIntegrationTests {
 	private static ToDoList validToDoList;
 	
 	@BeforeEach
-	 public void init() {
+	 void init() {
 		validToDoList = new ToDoList(1);
 		tdlRepo.deleteAll();
 		validToDoList = tdlRepo.save(validToDoList);
@@ -59,14 +59,14 @@ class TaskServiceIntegrationTests {
 	}
 	
 	@Test
-	public void readByIDTest() {
+	void readByIDTest() {
 	List<TaskDTO> tasksInDB = taskService.readByID(validToDoList.getToDoID());
 	assertThat(validTaskDTOs).isEqualTo(tasksInDB); 
 	
 	}
 	
 	@Test
-	public void createTaskTest() {
+	void createTaskTest() {
 		Tasks anotherTask = new Tasks(4, "Sleeping", "very Sleepy");
 		TaskDTO anotherTaskDTO = taskMapper.mapToDTO(anotherTask);
 		
@@ -74,7 +74,7 @@ class TaskServiceIntegrationTests {
 	}
 	
 	@Test
-	public void updateTaskTest() { 
+	void updateTaskTest() { 
 		Tasks updateTask = new Tasks(validTask.getId(), "Crying", "Why Testing");
 		updateTask.setToDoList(validTask.getToDoList());
 		
@@ -86,7 +86,7 @@ class TaskServiceIntegrationTests {
 	}
 	
 	@Test
-	public void deleteTaskTest() {
+	void deleteTaskTest() {
 		assertThat (taskService.deleteTask(validTask.getId())).isTrue();
 	}
 	

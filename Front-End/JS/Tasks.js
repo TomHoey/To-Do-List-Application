@@ -14,17 +14,17 @@ const getTask = () => {
             .then(taskData => {
                 console.log(taskData);
 
-                let task = document.querySelector(".getTask");
+                let getTasks = document.querySelector(".getTask");
                
-                let currentList = list.querySelector("usabletask");
+                let currentTask = list.querySelector("usabletask");
 
                 if (currentList !=null) {
                     usableTask.remove();
                 }
 
-                let task = document.createElement("task");
+                let t = document.createElement("task");
                 task.innerText = JSON.stringify(taskData);
-                list.append(task);
+                list.append(t);
 
             }).catch(err => console.log("There seems to be a bit of an error here judge" + err));
     })

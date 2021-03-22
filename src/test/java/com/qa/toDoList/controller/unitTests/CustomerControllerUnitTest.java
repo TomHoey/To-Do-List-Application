@@ -43,7 +43,7 @@ public class CustomerControllerUnitTest {
 	private CustomerDTO aliveCustDTO;
 	
 	@BeforeEach
-	public void init() {
+	void init() {
 		aliveCustomer = new Customer(1, "Jeff", "JeffPass", "Jeff@test.com");
 		aliveCustomerDTO = new CustomerDTO (1, "Jeff");
 		
@@ -56,7 +56,7 @@ public class CustomerControllerUnitTest {
 	}
 	
 	@Test
-	public void readAllCustomerTest() {
+	void readAllCustomerTest() {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.add("location", "1442");
 		
@@ -71,7 +71,7 @@ public class CustomerControllerUnitTest {
 	}
 	
 	@Test
-	public void readByCIDCustomerTest() {
+	void readByCIDCustomerTest() {
 	
 		
 		when(customerService.readByCID(1)).thenReturn(aliveCustomerDTO);
@@ -85,7 +85,7 @@ public class CustomerControllerUnitTest {
 	}
 	
 	@Test
-	public void createCustomerTest() {
+	void createCustomerTest() {
 		
 		when(customerService.createCustomer(Mockito.any(Customer.class)))
 			.thenReturn(aliveCustomerDTO);
@@ -102,7 +102,7 @@ public class CustomerControllerUnitTest {
 	}
 	
 	@Test
-	public void updateCustomerTest() {
+	void updateCustomerTest() {
 		when(customerService.updateCustomer(aliveCustomer.getCid(), aliveCustomer))
 				.thenReturn(aliveCustomerDTO);
 		
@@ -116,7 +116,7 @@ public class CustomerControllerUnitTest {
 	}
 	
 	@Test
-	public void deleteCustomerTest() {
+	void deleteCustomerTest() {
 		
 		when(customerService.deleteCustomer(aliveCustomer.getCid())).thenReturn(true);
 		

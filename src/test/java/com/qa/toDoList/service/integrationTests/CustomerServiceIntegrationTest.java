@@ -35,7 +35,7 @@ public class CustomerServiceIntegrationTest {
 	private CustomerDTO aliveCustDTO;
 	
 	@BeforeEach
-	public void init() {
+	void init() {
 		
 		aliveCust = new Customer("Inter", "InterPass", "Inter@test.com");
 		
@@ -53,21 +53,21 @@ public class CustomerServiceIntegrationTest {
 	}
 	
 	@Test
-	public void readAllCustomerIntTest() {
+	void readAllCustomerIntTest() {
 		List<CustomerDTO> CustInDB = custService.readAllCustomer();
 		
 		assertThat(aliveCustDTOs).isEqualTo(CustInDB);
 	}
 	
 	@Test
-	public void createCustomerIntTest() {
+	void createCustomerIntTest() {
 		Customer newCust = new Customer(aliveCust.getCid(), "Inter", "InterPass", "Inter@test.co.uk");
 		CustomerDTO newCustDTO = custMapper.mapToDTO(newCust);
 		assertThat(newCustDTO).isEqualTo(custService.createCustomer(newCust));
 	}
 	
 	@Test
-	public void updateCustomerIntTest() {
+	void updateCustomerIntTest() {
 		Customer newCust = new Customer(aliveCust.getCid(), "Inter", "InterPass", "Inter@test.com");
 		CustomerDTO newCustDTO = custMapper.mapToDTO(newCust);
 		CustomerDTO toCustDTO = custService.updateCustomer(aliveCust.getCid(),newCust);
@@ -75,7 +75,7 @@ public class CustomerServiceIntegrationTest {
 	}
 	
 	@Test
-	public void deleteCustomerIntTest() { 
+	void deleteCustomerIntTest() { 
 		assertThat(true).isEqualTo(custService.deleteCustomer(aliveCust.getCid()));
 	}
 

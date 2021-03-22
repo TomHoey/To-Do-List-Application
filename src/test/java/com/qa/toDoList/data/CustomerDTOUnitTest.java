@@ -9,12 +9,12 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 public class CustomerDTOUnitTest {
 	
 	@Test
-	public void testEquals() {
+	void testEquals() {
 		EqualsVerifier.simple().forClass(CustomerDTO.class).verify();
 	}
 	
 	@Test
-	public void ConstructorTest() {
+	void ConstructorTest() {
 		CustomerDTO newCustomerDTO = new CustomerDTO();
 		newCustomerDTO.toString();
 	}

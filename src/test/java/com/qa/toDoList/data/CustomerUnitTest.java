@@ -11,7 +11,7 @@ public class CustomerUnitTest {
 	Customer aliveCustomer = new Customer(1, "Fred", "FredTest", "Fred@test.com");
 	
 	@Test
-	public void testEquals() {
+	void testEquals() {
 		EqualsVerifier.simple().forClass(Customer.class).verify();
 	}
 	

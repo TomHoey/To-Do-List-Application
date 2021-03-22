@@ -13,12 +13,12 @@ public class TaskUnitTest {
 	ToDoList newList = new ToDoList(1, "Exercise", new ArrayList<Tasks>());
 	
 	@Test
-	public void testEquals() { 
+	void testEquals() { 
 		EqualsVerifier.simple().forClass(Tasks.class).withPrefabValues(ToDoList.class, newList, new ToDoList()).verify();
 	}
 	
 	@Test
-	public void testingConstructors() { 
+	void testingConstructors() { 
 		Tasks task = new Tasks(1, "Exercise", "Running");
 		task.toString();
 	}

@@ -55,7 +55,7 @@ public class ToDoListControllerUnitTest {
 	}
 	
 	@Test
-	public void getAllListsTest() {
+	void getAllListsTest() {
 		
 		when(tdlService.listAllLists()).thenReturn(validListDTOs);
 		
@@ -68,7 +68,7 @@ public class ToDoListControllerUnitTest {
 	}
 	
 	@Test
-	public void createListTest() {
+	void createListTest() {
 		
 		when(tdlService.createList(Mockito.any(ToDoList.class)))
 		.thenReturn(validListDTO);
@@ -85,7 +85,7 @@ public class ToDoListControllerUnitTest {
 }	
 	
 	@Test
-	public void updateListTest() {
+	void updateListTest() {
 		when(tdlService.updateList(validList.getToDoID(), validList))
 				.thenReturn(validListDTO);
 		
@@ -99,7 +99,7 @@ public class ToDoListControllerUnitTest {
 	}
 	
 	@Test
-	public void deleteListTest() {
+	void deleteListTest() {
 		when(tdlService.deleteList(validList.getToDoID())).thenReturn(true);
 		
 		ResponseEntity<Boolean> response =

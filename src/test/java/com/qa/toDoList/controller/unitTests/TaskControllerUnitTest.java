@@ -44,7 +44,7 @@ public class TaskControllerUnitTest {
 	private TaskDTO validTaskDTO;
 	
 	@BeforeEach
-	public void init() { 
+	void init() { 
 		validTask = new Tasks(1, "Task", "TaskyTask");
 		validTaskDTO = new TaskDTO(1, "Task", "TaskyTask");
 		
@@ -56,7 +56,7 @@ public class TaskControllerUnitTest {
 	}
 	
 	@Test
-	public void getAllTasksTest() {
+	void getAllTasksTest() {
 		
 		when(taskService.readByID(1)).thenReturn(validTaskDTOs);
 		
@@ -69,7 +69,7 @@ public class TaskControllerUnitTest {
 	}
 	
 	@Test
-	public void createTasksTest() {
+	void createTasksTest() {
 		
 		when(taskService.createTask(Mockito.any(Tasks.class)))
 		.thenReturn(validTaskDTO);
@@ -86,7 +86,7 @@ public class TaskControllerUnitTest {
 	}	
 	
 	@Test
-	public void updateTaskTest() {
+	void updateTaskTest() {
 		when(taskService.updateTask(validTask.getId(), validTask))
 				.thenReturn(validTaskDTO);
 		
@@ -100,7 +100,7 @@ public class TaskControllerUnitTest {
 	}
 	
 	@Test
-	public void deleteTaskTest() {
+	void deleteTaskTest() {
 		when(taskService.deleteTask(validTask.getId())).thenReturn(true);
 		
 		ResponseEntity<Boolean> response =

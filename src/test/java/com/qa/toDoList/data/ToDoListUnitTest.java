@@ -10,14 +10,14 @@ public class ToDoListUnitTest {
 	
 	
 	@Test
-	public void testEquals() {
+	void testEquals() {
 		EqualsVerifier.simple().forClass(ToDoList.class)
 		.withPrefabValues(ToDoList.class, new ToDoList(1, "Exercise"), 
 				new ToDoList(2, "Running")).verify();
 	}
 	
 	@Test
-	public void ConstructorTest() {
+	void ConstructorTest() {
 		ToDoList newList = new ToDoList();
 		newList.toString();
 	}

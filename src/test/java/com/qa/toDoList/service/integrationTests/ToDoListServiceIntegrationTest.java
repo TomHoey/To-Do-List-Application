@@ -56,7 +56,7 @@ import com.qa.toDoList.service.ToDoListService;
 		}
 		
 		@Test
-		public void readAllTest() {
+		void readAllTest() {
 		
 			List<ToDoListDTO> listsInDB = tdlService.listAllLists();
 			assertThat(validToDoListDTOs).isEqualTo(listsInDB); 
@@ -64,7 +64,7 @@ import com.qa.toDoList.service.ToDoListService;
 		}
 		
 		@Test
-		public void createListTest() {
+		void createListTest() {
 			
 			ToDoList anotherList = new ToDoList(validToDoList.getToDoID(), "Rest", validToDoList.getTasks());
 			ToDoListDTO anotherTaskDTO = tdlMapper.mapToDTO(anotherList);
@@ -73,7 +73,7 @@ import com.qa.toDoList.service.ToDoListService;
 		}
 		
 		@Test
-		public void updateListTest() { 
+		void updateListTest() { 
 			
 			ToDoList updateList = new ToDoList(validToDoList.getToDoID(), "Crying", validToDoList.getTasks());
 			
@@ -86,7 +86,7 @@ import com.qa.toDoList.service.ToDoListService;
 		}
 		
 		@Test
-		public void deleteListTest() {
+		void deleteListTest() {
 			assertThat (tdlService.deleteList(validToDoList.getToDoID())).isTrue();
 		}
 

@@ -60,7 +60,7 @@ public class TaskControllerIntegrationTest {
 	private ToDoList validList= new ToDoList(1,"Exercise", validTasks);
 
 	@Test
-	public void createTaskTest() throws Exception {
+	void createTaskTest() throws Exception {
 		Tasks taskSave = new Tasks("Sprinting", "100m");
 		taskSave.setToDoList(validList);
 		
@@ -84,7 +84,7 @@ public class TaskControllerIntegrationTest {
 	
 	
 	@Test
-	public void readTaskByID () throws Exception {
+	void readTaskByID () throws Exception {
 		
 		MockHttpServletRequestBuilder mockRequest = 
 				MockMvcRequestBuilders.request(HttpMethod.GET, "/task/1");
@@ -100,7 +100,7 @@ public class TaskControllerIntegrationTest {
 	}
 	
 	@Test
-	public void updateTaskTest() throws Exception {
+	void updateTaskTest() throws Exception {
 		Tasks newTask = new Tasks(1, "Running", "Running 5km");
 		TaskDTO newTaskDTO = new TaskDTO(1, "Running", "Running 5km");
 		MockHttpServletRequestBuilder mockRequest = 
@@ -120,7 +120,7 @@ public class TaskControllerIntegrationTest {
 	}
 	
 	@Test
-	public void deleteTasks() throws Exception {
+	void deleteTasks() throws Exception {
 	MockHttpServletRequestBuilder mockRequest = 
 			MockMvcRequestBuilders.request(HttpMethod.DELETE, "/task/1");
 	ResultMatcher statusMatcher = MockMvcResultMatchers.status().isNoContent();

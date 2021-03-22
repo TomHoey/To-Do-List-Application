@@ -9,12 +9,12 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 public class TaskDTOUnitTest {
 	
 	@Test
-	public void testEquals() {
+	void testEquals() {
 		EqualsVerifier.simple().forClass(TaskDTO.class).verify();
 	}
 	
 	@Test
-	public void testingConstructors() {
+	void testingConstructors() {
 		TaskDTO task = new TaskDTO(1, "Exercise", "Running");
 		task.toString();
 		
