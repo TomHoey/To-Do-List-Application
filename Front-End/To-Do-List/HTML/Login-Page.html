@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Tasks List</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="tasks.html">Tasks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="urgency.html">Task List</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h1 class="big-header">How do you want to use the tasks?</h1>
+    <p class="text">
+        Use the buttons below to help you choose what you want to do!
+    </p>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="get">
+                <h3 class="headers">Get Tasks</h3>
+                <button type="button" class="btn btn-outline-light" onclick="getRequest()">
+                    Show all tasks
+                </button>
+                <div class="card" style="margin: 2vw 2vh;">
+                    <div class="card-body">
+                        <p class="getData">
+
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="post">
+                <h3 class="headers">Create a Task</h3>
+                <p class="text">
+                    NOTE: Please use an existing Task List (You can check which task lists you have created on the 
+                    task list page)
+                </p>
+
+                <!-- <form> -->
+                    <div class="mb-3">
+                        <label for="taskname" class="form-label" style="color: white;">Task name</label>
+                        <input type="text" class="form-control" name="taskname" id="taskname"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="length" class="form-label" style="color: white;">How long will the task
+                            take?</label>
+                        <input type="number" class="form-control" name="length" id="length"/>
+                        <div id="emailHelp" class="form-text">
+                            This refers to how long the task takes to complete in hours
+                            (roughly)
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="difficulty" style="color: white;">Select the task
+                            difficulty</label>
+                        <select class="form-control" id="difficulty" name="difficulty">
+                            <option value="Easy">Easy</option>
+                            <option value="Fairly-Easy">Fairly Easy</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="Fairly-Hard">Fairly Hard</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label" style="color: white;">Description of task</label>
+                        <textarea class="form-control" id="description" rows="2"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="urgency" style="color: white;">Would you like to add the task to a task list with how urgent the task is?</label>
+                            <input type="checkbox" name="urgency" id="check" onclick="expandCheckbox()"/>
+                    </div>
+                    
+                    <div class="mb-3" id="hiddenStuff">
+                        <label id="hiddendata" class="form-label" for="listid">Enter a list ID</label>
+                            <input type="number" class="form-control" name="idcheck" id="idcheck">
+
+                            <!-- <label id="hiddendata" class="form-label" for="listid">Enter a list name (optional)</label>
+                            <input type="text" class="form-control" name="idcheck" id="idcheck"> -->
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-light" id="newTask" onclick="postRequest()">
+                        Create a new task
+                    </button>
+                <!-- </form> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="update">
+                <h3 class="headers">Update a Task</h3>
+                <button type="button" class="btn btn-outline-light" onclick="">
+                    Update a task
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="delete">
+                <h3 class="headers">Delete a Task</h3>
+
+                <div class="mb-3" id="deleteFunction">
+                    <label id="delData" class="form-label" for="delData">Enter a list ID</label>
+                    <input type="number" class="form-control" name="delIdCheck" id="delIdCheck">
+                </div>
+
+                <button type="button" class="btn btn-outline-light" onclick="deleteRequest()">
+                    Delete a task
+            </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/js/tasks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
