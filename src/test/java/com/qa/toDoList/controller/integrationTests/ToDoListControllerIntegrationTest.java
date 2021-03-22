@@ -22,6 +22,7 @@ import com.qa.toDoList.controller.ToDoListController;
 import com.qa.toDoList.data.models.Tasks;
 import com.qa.toDoList.data.models.ToDoList;
 import com.qa.toDoList.data.respository.ToDoListRepository;
+import com.qa.toDoList.dto.TaskDTO;
 import com.qa.toDoList.dto.ToDoListDTO;
 import com.qa.toDoList.mappers.ToDoListMapper;
 import com.qa.toDoList.service.ToDoListService;
@@ -51,8 +52,12 @@ public class ToDoListControllerIntegrationTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 	
+	private Tasks validTask = new Tasks(1, "Running", "Run 5km");
+	private TaskDTO validTaskDTO = new TaskDTO(1, "Running", "Run 5km");
+	
 	private ToDoList validList = new ToDoList(1, "Exercise");
-	private ToDoListDTO validListDTO = new ToDoListDTO(1, "Exercise");
+	private ToDoListDTO validListDTO = new ToDoListDTO(1, "Exercise", List.of(validTaskDTO));
+	
 
 	private List<ToDoList> validLists = List.of(validList);
 	private List<ToDoListDTO> validListDTOs = List.of(validListDTO);
@@ -104,8 +109,9 @@ public class ToDoListControllerIntegrationTest {
 		
 		 ToDoList newList = new ToDoList(1, "Exercise");
 		 ToDoListDTO newListDTO = new ToDoListDTO(1, "Exercise"); 
-		
-		
+		 newListDTO.getTasks().add(validTaskDTO);
+		 
+		 
 		 MockHttpServletRequestBuilder mockRequest = 
 				MockMvcRequestBuilders.request(HttpMethod.PUT, "/list/1");
 		

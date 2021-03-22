@@ -14,10 +14,11 @@ const getTask = () => {
             .then(taskData => {
                 console.log(taskData);
 
-                let toDoList = document.querySelector(".getList");
-                let usableTask = list.querySelector("task");
+                let task = document.querySelector(".getTask");
+               
+                let currentList = list.querySelector("usabletask");
 
-                if (usableTask !=null) {
+                if (currentList !=null) {
                     usableTask.remove();
                 }
 

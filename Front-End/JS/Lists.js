@@ -22,9 +22,9 @@ const getList = () => {
                 usableList.remove();
             }
 
-            let l = document.createElement("list");
+            let list = document.createElement("list");
             list.innerText = JSON.stringify(listData);
-            list.append(l);
+            list.append(list);
         
         }).catch(err => console.log("Uh-oh, fella you need to fix something!" + err));
     })

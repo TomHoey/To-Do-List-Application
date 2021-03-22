@@ -100,6 +100,26 @@ public class TaskControllerIntegrationTest {
 	}
 	
 	@Test
+	public void updateTaskTest() throws Exception {
+		Tasks newTask = new Tasks(1, "Running", "Running 5km");
+		TaskDTO newTaskDTO = new TaskDTO(1, "Running", "Running 5km");
+		MockHttpServletRequestBuilder mockRequest = 
+				MockMvcRequestBuilders.request(HttpMethod.PUT, "/task/1");
+		
+		mockRequest.contentType(MediaType.APPLICATION_JSON);
+		mockRequest.content(objectMapper.writeValueAsString(newTask));
+		mockRequest.accept(MediaType.APPLICATION_JSON);
+		
+		ResultMatcher statusMatcher = MockMvcResultMatchers.status().isOk();
+		ResultMatcher contentMatcher = MockMvcResultMatchers.content()
+				.json(objectMapper.writeValueAsString(newTaskDTO));
+		
+		mvc.perform(mockRequest)
+		   .andExpect(statusMatcher)
+		   .andExpect(contentMatcher);
+	}
+	
+	@Test
 	public void deleteTasks() throws Exception {
 	MockHttpServletRequestBuilder mockRequest = 
 			MockMvcRequestBuilders.request(HttpMethod.DELETE, "/task/1");
