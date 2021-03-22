@@ -98,4 +98,16 @@ public class TaskControllerIntegrationTest {
 		   .andExpect(statusMatcher)
 		   .andExpect(contentMatcher);
 	}
+	
+	@Test
+	public void deleteTasks() throws Exception {
+	MockHttpServletRequestBuilder mockRequest = 
+			MockMvcRequestBuilders.request(HttpMethod.DELETE, "/task/1");
+	ResultMatcher statusMatcher = MockMvcResultMatchers.status().isNoContent();
+	ResultMatcher contentMatcher = MockMvcResultMatchers.content().string("true");
+	mvc.perform(mockRequest)
+	   .andExpect(statusMatcher)
+	   .andExpect(contentMatcher);
+	
+	}
 }
